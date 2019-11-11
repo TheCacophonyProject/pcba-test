@@ -43,6 +43,6 @@ func testRTC(t *Tests) {
 	if state.Time.Sub(now) > time.Second {
 		t.addFail(fmt.Sprintf("RTC write or read time failed. Time written %s, time read %s", now.UTC(), state.Time))
 	} else {
-		t.addPass("RTC read and write failed")
+		t.addPass("RTC read and write passed")
 	}
 }

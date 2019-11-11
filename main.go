@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 
 	"github.com/alexflint/go-arg"
@@ -35,6 +36,19 @@ type Tests struct {
 	Failed []string
 }
 
+func (t Tests) String() string {
+	res := fmt.Sprintf("%d passed, %d failed", len(t.Passed), len(t.Failed))
+	res = res + "\npassed tests:"
+	for _, s := range t.Passed {
+		res = res + "\n\t" + s
+	}
+	res = res + "\nfailed tests:"
+	for _, s := range t.Failed {
+		res = res + "\n\t" + s
+	}
+	return res
+}
+
 func (t *Tests) addFail(message string) {
 	t.Failed = append(t.Failed, message)
 }
@@ -47,16 +61,16 @@ func runMain() error {
 
 	t := Tests{}
 
-	log.Println("Checking RTC:")
-
+	log.Println("testing RTC")
 	testRTC(&t)
+	log.Println("testing ATtiny")
+	testAttiny(&t)
 
-	if len(t.Failed) == 0 {
-		log.Println("all tests passed")
-	} else {
-		log.Println("some test failed")
-		log.Printf("failed tests: %v", t.Failed)
-	}
+	//TODO speaker test
+	//TODO USB test
+	//TODO Thermal camera test
+	//TODO rs485 test
 
+	log.Println(t)
 	return nil
 }
