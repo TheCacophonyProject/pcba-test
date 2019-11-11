@@ -57,6 +57,7 @@ func (t *Tests) addPass(message string) {
 }
 
 func runMain() error {
+	log.SetFlags(0)
 	_ = procArgs()
 
 	t := Tests{}
@@ -65,10 +66,11 @@ func runMain() error {
 	testRTC(&t)
 	log.Println("testing ATtiny")
 	testAttiny(&t)
+	log.Println("testing USB")
+	testUSB(&t)
 
 	//TODO speaker test
-	//TODO USB test
-	//TODO Thermal camera test
+	//TODO Thermal camera test. Might want just to use managementd and thermal-recorder to display a thermal video for this.
 	//TODO rs485 test
 
 	log.Println(t)
