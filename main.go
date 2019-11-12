@@ -12,6 +12,8 @@ var (
 )
 
 type Args struct {
+	USBWaitTime int `arg:"--usb-power-wait" help:"time to wait in seconds after powering on usb"`
+	RTCAttempts int `arg:"--attiny-attempts" help:"number of attempts when talking to RTC"`
 }
 
 func (Args) Version() string {
@@ -19,7 +21,10 @@ func (Args) Version() string {
 }
 
 func procArgs() Args {
-	args := Args{}
+	args := Args{
+		USBWaitTime: 1,
+		RTCAttempts: 1,
+	}
 	arg.MustParse(&args)
 	return args
 }
@@ -58,16 +63,16 @@ func (t *Tests) addPass(message string) {
 
 func runMain() error {
 	log.SetFlags(0)
-	_ = procArgs()
+	args := procArgs()
 
 	t := Tests{}
 
 	log.Println("testing RTC")
-	testRTC(&t)
+	testRTC(args.RTCAttempts, &t)
 	log.Println("testing ATtiny")
 	testAttiny(&t)
 	log.Println("testing USB")
-	testUSB(&t)
+	testUSB(args.USBWaitTime, &t)
 
 	//TODO speaker test
 	//TODO Thermal camera test. Might want just to use managementd and thermal-recorder to display a thermal video for this.

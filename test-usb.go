@@ -14,7 +14,7 @@ const (
 	USBPowerPin = "GPIO22"
 )
 
-func testUSB(t *Tests) {
+func testUSB(waitTime int, t *Tests) {
 	setUSBPower(false)
 	time.Sleep(time.Second)
 	initialUSBCount, err := usbBusCount()
@@ -23,7 +23,7 @@ func testUSB(t *Tests) {
 		return
 	}
 	setUSBPower(true)
-	time.Sleep(time.Second)
+	time.Sleep(time.Duration(waitTime) * time.Second)
 	secondUSBCount, err := usbBusCount()
 	if err != nil {
 		t.addFail(err.Error())

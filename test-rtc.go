@@ -7,14 +7,14 @@ import (
 	"github.com/TheCacophonyProject/rtc-utils/rtc"
 )
 
-func testRTC(t *Tests) {
+func testRTC(attempts int, t *Tests) {
 
 	// RTC Battery. If the battery is low the test will also fail
 	// Battery test is repeated as if the battery plug is not connected it can be
 	// a floating voltage on the RTC battery pin
 	batteryPassed := true
 	for i := 0; i < 20; i++ {
-		if rtc.CheckBattery(1) != nil {
+		if rtc.CheckBattery(attempts) != nil {
 			batteryPassed = false
 			break
 		}
@@ -28,14 +28,14 @@ func testRTC(t *Tests) {
 	}
 
 	now := time.Now().UTC() // Used for checking read test
-	if rtc.Write(1) == nil {
+	if rtc.Write(attempts) == nil {
 		t.addPass("RTC time write passed")
 	} else {
 		t.addFail("RTC time write failed")
 		return // Don't test read if write failed
 	}
 
-	state, err := rtc.State(1)
+	state, err := rtc.State(attempts)
 	if err != nil {
 		t.addFail("RTC state read failed")
 		return
