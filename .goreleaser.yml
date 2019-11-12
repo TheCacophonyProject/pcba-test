@@ -1,0 +1,34 @@
+project_name: pcba-test
+dist: dist
+
+release:
+  github:
+    owner: TheCacophonyProject
+    name: pcba-test
+  name_template: '{{.Tag}}'
+
+builds:
+- id: pcba-test
+  binary: pcba-test
+  main: ./
+  goos:
+    - linux
+  goarch:
+    - arm
+  goarm:
+    - "7"
+  ldflags: -s -w -X main.version={{.Version}}
+
+nfpms:
+- vendor: The Cacophony Project
+  homepage: http://cacophony.org.nz/
+  maintainer: Cacophony Developers <coredev@cacophony.org.nz>
+  description: Tool for testing PCBA
+  license: GPL v3.0
+  name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Arch }}"
+  formats:
+    - deb
+  bindir: /usr/bin
+
+checksum:
+  name_template: '{{ .ProjectName }}_{{ .Version }}_checksums.txt'
