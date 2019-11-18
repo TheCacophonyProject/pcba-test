@@ -39,7 +39,7 @@ func testAttiny(t *Tests) {
 	if detectATtiny(dev) {
 		t.addPass("coudl connect to attiny")
 	} else {
-		t.addPass("failed to connect to attiny")
+		t.addFail("failed to connect to attiny")
 		return
 	}
 

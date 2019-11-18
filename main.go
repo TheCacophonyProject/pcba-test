@@ -73,8 +73,9 @@ func runMain() error {
 	testAttiny(&t)
 	log.Println("testing USB")
 	testUSB(args.USBWaitTime, &t)
+	log.Println("testing speakers")
+	testSpeakers(&t)
 
-	//TODO speaker test
 	//TODO Thermal camera test. Might want just to use managementd and thermal-recorder to display a thermal video for this.
 	//TODO rs485 test
 
