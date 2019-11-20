@@ -1,4 +1,4 @@
-package main
+package pcbatest
 
 import (
 	"fmt"
@@ -14,7 +14,7 @@ const (
 	USBPowerPin = "GPIO22"
 )
 
-func testUSB(waitTime int, t *Tests) {
+func TestUSB(waitTime int, t *Tests) {
 	setUSBPower(false)
 	time.Sleep(time.Second)
 	initialUSBCount, err := usbBusCount()

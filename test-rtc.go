@@ -1,4 +1,4 @@
-package main
+package pcbatest
 
 import (
 	"fmt"
@@ -7,7 +7,7 @@ import (
 	"github.com/TheCacophonyProject/rtc-utils/rtc"
 )
 
-func testRTC(attempts int, t *Tests) {
+func TestRTC(attempts int, t *Tests) {
 
 	// RTC Battery. If the battery is low the test will also fail
 	// Battery test is repeated as if the battery plug is not connected it can be

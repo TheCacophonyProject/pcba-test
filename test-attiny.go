@@ -1,4 +1,4 @@
-package main
+package pcbatest
 
 import (
 	"encoding/binary"
@@ -24,7 +24,7 @@ const (
 	connectAttemptInterval = 3 * time.Second
 )
 
-func testAttiny(t *Tests) {
+func TestAttiny(t *Tests) {
 
 	if _, err := host.Init(); err != nil {
 		t.addFail(err.Error())
