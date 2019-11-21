@@ -1,1 +1,54 @@
-Hello world!
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Cacophony Hat Test</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <style>
+    .btn {
+      margin-bottom: 15px;
+    }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="container pt-5 pl-0">
+            <h2>Tests<br></h2>
+        </div>
+        <hr>
+
+        <div class="row">
+          <label for=rtc-results class="col-sm-1 mr-2 ">RTC:</label>
+          <p class="col-sm-5 "id=rtc-results></p>
+        </div>
+        <div class="row">
+          <label for=attiny-results class="col-sm-1 mr-2 ">ATtiny:</label>
+          <p class="col-sm-5 "id=attiny-results></p>
+        </div>
+        <div class="row">
+          <label for=usb-results class="col-sm-1 mr-2 ">USB:</label>
+          <p class="col-sm-5 "id=usb-results></p>
+        </div>
+
+        <div class="row">
+          <button id=run-tests-button onclick="runTests()" class="btn btn-primary">Run Tests</button>
+        </div>
+
+        <div class="row">
+          <button id=play-sound-button onclick="playSound()" class="btn btn-primary">Play Sound</button>
+        </div>
+
+        <div class="row">
+          <button onclick="location.href='/camera.html';" class="btn btn-primary">View Camera</button>
+        </div>
+    </div>
+</body>
+<script src="/js/jquery-3.3.1.slim.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/tests.js"></script>
+</html>
