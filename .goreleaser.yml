@@ -42,6 +42,10 @@ nfpms:
   formats:
     - deb
   bindir: /usr/bin
+  files:
+    "_release/pcba-test-interface.service": "/etc/systemd/system/pcba-test-interface.service"
+  scripts:
+    postinstall: "_release/postinstall.sh"
 
 checksum:
   name_template: '{{ .ProjectName }}_{{ .Version }}_checksums.txt'
