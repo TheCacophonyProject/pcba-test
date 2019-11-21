@@ -24,7 +24,7 @@ This is intended to be tested on a Raspberry Pi 3 B
   - Attach USB cable from Raspberry Pi to HAT
   - Put USB drive in HAT
 - Power up through power plug on HAT
-- Open a web browser on a device that is on the same wii as the Raspberry Pi and go to `<RPi-devicename>.local`
+- Open a web browser on a device that is on the same wifi as the Raspberry Pi and go to `<RPi-devicename>.local`
 - Press `Run Tests` and wait for it to finish
 - Press `Play Sound` and check that it played a sound
 - Press `View Camera` and check the output from the camera (this can take a minute or two sometimes to start from boot)
