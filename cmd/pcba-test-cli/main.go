@@ -1,9 +1,9 @@
 package main
 
 import (
-	"fmt"
 	"log"
 
+	pcbatest "github.com/TheCacophonyProject/pcba-test"
 	"github.com/alexflint/go-arg"
 )
 
@@ -36,45 +36,21 @@ func main() {
 	}
 }
 
-type Tests struct {
-	Passed []string
-	Failed []string
-}
-
-func (t Tests) String() string {
-	res := fmt.Sprintf("%d passed, %d failed", len(t.Passed), len(t.Failed))
-	res = res + "\npassed tests:"
-	for _, s := range t.Passed {
-		res = res + "\n\t" + s
-	}
-	res = res + "\nfailed tests:"
-	for _, s := range t.Failed {
-		res = res + "\n\t" + s
-	}
-	return res
-}
-
-func (t *Tests) addFail(message string) {
-	t.Failed = append(t.Failed, message)
-}
-func (t *Tests) addPass(message string) {
-	t.Passed = append(t.Passed, message)
-}
-
 func runMain() error {
 	log.SetFlags(0)
 	args := procArgs()
 
-	t := Tests{}
+	t := pcbatest.Tests{}
 
 	log.Println("testing RTC")
-	testRTC(args.RTCAttempts, &t)
+	pcbatest.TestRTC(args.RTCAttempts, &t)
 	log.Println("testing ATtiny")
-	testAttiny(&t)
+	pcbatest.TestAttiny(&t)
 	log.Println("testing USB")
-	testUSB(args.USBWaitTime, &t)
+	pcbatest.TestUSB(args.USBWaitTime, &t)
+	log.Println("testing speakers")
+	pcbatest.TestSpeakers(&t)
 
-	//TODO speaker test
 	//TODO Thermal camera test. Might want just to use managementd and thermal-recorder to display a thermal video for this.
 	//TODO rs485 test
 

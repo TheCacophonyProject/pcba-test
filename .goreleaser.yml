@@ -8,9 +8,9 @@ release:
   name_template: '{{.Tag}}'
 
 builds:
-- id: pcba-test
-  binary: pcba-test
-  main: ./
+- id: pcba-test-cli
+  binary: pcba-test-cli
+  main: ./cmd/pcba-test-cli
   goos:
     - linux
   goarch:
@@ -18,6 +18,19 @@ builds:
   goarm:
     - "7"
   ldflags: -s -w -X main.version={{.Version}}
+- id: pcba-test-interface
+  binary: pcba-test-interface
+  main: ./cmd/pcba-test-interface
+  goos:
+    - linux
+  goarch:
+    - arm
+  goarm:
+    - "7"
+  ldflags: -s -w -X main.version={{.Version}}
+  hooks:
+    pre: packr
+    post: packr clean
 
 nfpms:
 - vendor: The Cacophony Project
@@ -29,6 +42,10 @@ nfpms:
   formats:
     - deb
   bindir: /usr/bin
+  files:
+    "_release/pcba-test-interface.service": "/etc/systemd/system/pcba-test-interface.service"
+  scripts:
+    postinstall: "_release/postinstall.sh"
 
 checksum:
   name_template: '{{ .ProjectName }}_{{ .Version }}_checksums.txt'
