@@ -1,8 +1,8 @@
 # pcba-test
-This is automated testing of the PCBAs for the cacophony project
+This is automated testing of the PCBAs for the Cacophony Project
 
 ## Setup
-This is intended to be tested on a Raspberry Pi 3 B
+This is intended to be tested on a Raspberry Pi 3B
 - Install thermal-recorder https://github.com/TheCacophonyProject/thermal-recorder/releases
 - Enable thermal-recorder service `sudo systemctl enable thermal-recorder`
 - Enable leptond service `sudo sudo systemctl enable leptond`
