@@ -4,11 +4,14 @@ This is automated testing of the PCBAs for the Cacophony Project
 ## Setup
 This is intended to be tested on a Raspberry Pi 3B
 - Install thermal-recorder https://github.com/TheCacophonyProject/thermal-recorder/releases
+- Install the latest attiny-controller https://github.com/TheCacophonyProject/attiny-controller/releases 
 - Enable thermal-recorder service `sudo systemctl enable thermal-recorder`
 - Enable leptond service `sudo sudo systemctl enable leptond`
+- Enable attiny-controller service `sudo sudo systemctl enable attiny-controller`
 - Replace `/boot/config.txt` on Raspberry Pi with `config.txt`
+- Make enpty config file `touch /etc/cacophony/config.toml`
 - Setup wifi on Raspberry Pi so you can connect to it on over the same network. https://www.raspberrypi.org/documentation/configuration/wireless/wireless-cli.md
-- Downoad and install latest pcba-test package.
+- Download and install the latest pcba-test package.
 - Have a ATtiny85 programmed (at 8MHz) with the latest code from https://github.com/TheCacophonyProject/attiny
 - (optional) change hostname of the Raspberry Pi if you are setting up more than one test device
 
