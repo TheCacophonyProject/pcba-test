@@ -75,7 +75,7 @@ func TakeSnapshot(w http.ResponseWriter, r *http.Request) {
 func handleTestUSB(w http.ResponseWriter, r *http.Request) {
 	t := pcbatest.Tests{}
 	log.Println("testing usb")
-	pcbatest.TestUSB(1, &t)
+	pcbatest.TestUSB(3, &t)
 	b, err := json.Marshal(t)
 	if err != nil {
 		serverError(&w, err)

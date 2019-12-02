@@ -16,7 +16,8 @@ const (
 
 func TestUSB(waitTime int, t *Tests) {
 	setUSBPower(false)
-	time.Sleep(time.Second)
+	time.Sleep(time.Second * 2)
+	usbBusCount() // Sometimes the first count will still have the device that just turned off
 	initialUSBCount, err := usbBusCount()
 	if err != nil {
 		t.addFail(err.Error())
